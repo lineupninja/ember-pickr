@@ -50,6 +50,10 @@ export default Component.extend({
       // To use it set the cursor on a position where a number is and scroll, use ctrl to make steps of five
       adjustableNumbers: this.get('adjustableNumbers') !== false,
 
+      // Optional color swatches. null by default which means it's disabled.
+      // Types are all these allowed which can be used in pickr e.g. hex, hsv(a), hsl(a), rgb(a), cmyk or a name like 'magenta'
+      swatches: this.get('swatches') || null,
+
       strings: {
         save: this.get('saveLabel') || 'Save',
         clear: this.get('clearLabel') || 'Clear'
@@ -100,6 +104,13 @@ export default Component.extend({
       let [hsva, instance] = args;
       if (this.onChange) {
         this.onChange(hsva, instance);
+      }
+    });
+
+    this._pickr.on('swatchselect', (...args) => {
+      let [hsva, instance] = args;
+      if (this.onSwatchSelect) {
+        this.onSwatchSelect(hsva, instance);
       }
     });
   },

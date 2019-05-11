@@ -167,4 +167,29 @@ module('Integration | Component | color-picker', function(hooks) {
     await fillIn('input', '#00ff00');
     assert.equal(this.get('color'), '#00ff00');
   });
+
+  test('it shows color swatches when configured', async function(assert) {
+
+    this.set('swatches', ['#ff0000', '#00ff00', '#0000ff']);
+
+    await render(hbs`{{color-picker default="#333" swatches=swatches}}`);
+    await sleep(1000);
+
+    await click('.pcr-button');
+
+    assert.equal(
+      getComputedStyle( getPickerElement('.pcr-swatches :first-child')).color
+        , 'rgb(255, 0, 0)')
+  });
+
+  test('it does not show color swatches when not configured', async function(assert) {
+
+    await render(hbs`{{color-picker default="#333"}}`);
+    await sleep(1000);
+
+    await click('.pcr-button');
+
+    assert.equal(getPickerElement('.pcr-swatches :first-child'), undefined)
+  });
+
 });
