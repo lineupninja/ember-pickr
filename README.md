@@ -42,7 +42,7 @@ To use it set the cursor on a position where a number is and scroll, use ctrl to
 * **`clearLabel`**: Button label for clear button | **`Clear`**
 * **`format`**: One of `hsva`, `hsla`, `rgba`, `hexa`, `cmyk` | **`{ h, s, v, a }`**
 * **`swatches`**:  Optional color swatches as an array of string. Types are all these allowed which can be used in pickr e.g. hex, hsv(a), hsl(a), rgb(a), cmyk or a name like 'magenta' | **`null`**
-* To use the **`onChange`** and **`onSave`** handlers, use closure actions.
+* To use the **`onChange`**, **`onSave`** and **`onSwatchSelect`** handlers, use closure actions.
 ```
 {{color-picker
   value=value
